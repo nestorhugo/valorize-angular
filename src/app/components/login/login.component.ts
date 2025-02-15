@@ -31,7 +31,7 @@ export class LoginComponent {
   };
   authUser: any = null;
   currentPage = "login";
-  constructor(private router: Router) {}
+  router = new Router();
 
   changePage(page: string) {
     this.currentPage = page;
