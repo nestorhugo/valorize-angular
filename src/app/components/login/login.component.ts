@@ -54,6 +54,20 @@ export class LoginComponent {
     });
   }
 
+  get minPasswordLength(): boolean {
+    return (
+      this.userData.password.length >= 8 ||
+      this.newUserData.password.length >= 8
+    );
+  }
+
+  get validateLoginForm(): boolean {
+    return (
+      Object.values(this.userData).every((value) => value !== "") &&
+      this.minPasswordLength
+    );
+  }
+
   // --- register
 
   newUserData: newUserData = {
@@ -75,5 +89,16 @@ export class LoginComponent {
       this.userData.password = this.newUserData.password;
       this.handleLogin();
     });
+  }
+
+  get passwordMatches(): boolean {
+    return this.newUserData.password === this.newUserData.passwordConfirm;
+  }
+
+  get validateRegisterForm(): boolean {
+    return (
+      Object.values(this.newUserData).every((value) => value !== "") &&
+      this.passwordMatches
+    );
   }
 }

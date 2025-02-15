@@ -9,7 +9,11 @@
     placeholder="Email"
   />
   <p-password placeholder="Senha" [(ngModel)]="userData.password" />
-  <p-button (onClick)="handleLogin()" label="Fazer login" />
+  <p-button
+    (onClick)="handleLogin()"
+    [disabled]="!validateLoginForm"
+    label="Fazer login"
+  />
   <div class="card flex justify-center">
     <p>Ainda não tem uma conta?</p>
     <h3 (click)="changePage('register')">Cadastre-se</h3>
@@ -37,9 +41,13 @@
     placeholder="Confirmar senha"
     [(ngModel)]="newUserData.passwordConfirm"
   />
-  <p-button (onClick)="handleRegister()" label="Fazer cadastro" />
+  <p *ngIf="!passwordMatches">As senhas não coincidem!</p>
+  <p *ngIf="!minPasswordLength">A senha precisa ter pelo menos 8 caracteres</p>
+  <p-button
+    (onClick)="handleRegister()"
+    [disabled]="!validateRegisterForm"
+    label="Fazer cadastro"
+  />
   <p>Já possui uma conta?</p>
   <h4 (click)="changePage('login')">Fazer login</h4>
 </div>
-
-<p>{{ authUser | json }}</p>

@@ -13,3 +13,16 @@ export const authGuard: CanActivateFn = (route, state) => {
 
   return false;
 };
+
+export const loggedGuard: CanActivateFn = (route, state) => {
+  const userData = getUserData();
+
+  if (!userData?.token) {
+    return true;
+  }
+
+  const router = new Router();
+  router.navigate(["/"]);
+
+  return false;
+};
