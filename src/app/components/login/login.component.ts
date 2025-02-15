@@ -73,6 +73,7 @@ export class LoginComponent {
 
       this.userData.email = this.newUserData.email;
       this.userData.password = this.newUserData.password;
+      this.handleLogin();
     });
   }
 }
