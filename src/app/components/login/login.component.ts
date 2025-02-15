@@ -59,12 +59,7 @@ export class LoginComponent {
     apiCall({
       path: "/users/records",
       method: "POST",
-      data: {
-        email: this.newUserData.email,
-        password: this.newUserData.password,
-        passwordConfirm: this.newUserData.passwordConfirm,
-        name: this.newUserData.name,
-      },
+      data: this.newUserData,
     }).then((resp) => {
       console.log(resp);
       this.authUser = resp;

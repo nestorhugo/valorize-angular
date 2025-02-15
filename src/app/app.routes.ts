@@ -1,4 +1,8 @@
 import { Routes } from "@angular/router";
-import { LoginComponent } from "./components/login/login.component"; // Certifique-se de ajustar o caminho conforme necessário
+import { LoginComponent } from "./components/login/login.component";
+import { HomeComponent } from "./home/home.component";
 
-export const routes: Routes = [{ path: "login", component: LoginComponent }];
+export const routes: Routes = [
+  { path: "", component: HomeComponent },
+  { path: "login", component: LoginComponent },
+];
