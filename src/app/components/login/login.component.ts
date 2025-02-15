@@ -5,6 +5,10 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { PasswordModule } from "primeng/password";
 import { ButtonModule } from "primeng/button";
 import { apiCall } from "../../utils/apiCall";
+import { newUserData } from "../../types/globalTypes";
+import { saveUserData } from "../../utils/userData";
+import { Router } from "@angular/router";
+import { AuthResponse } from "../../types/apiTypes";
 
 @Component({
   selector: "app-login",
@@ -27,28 +31,32 @@ export class LoginComponent {
   };
   authUser: any = null;
   currentPage = "login";
+  constructor(private router: Router) {}
 
   changePage(page: string) {
     this.currentPage = page;
   }
 
   handleLogin() {
-    apiCall({
+    apiCall<AuthResponse>({
       path: "/users/auth-with-password",
       method: "POST",
       data: {
         identity: this.userData.email,
         password: this.userData.password,
       },
-    }).then((resp) => {
-      console.log(resp);
+    }).then(async (resp) => {
+      console.log("resp");
       this.authUser = resp;
+
+      await saveUserData(resp);
+      this.router.navigate(["/"]);
     });
   }
 
   // --- register
 
-  newUserData = {
+  newUserData: newUserData = {
     email: "",
     name: "",
     password: "",
@@ -61,8 +69,10 @@ export class LoginComponent {
       method: "POST",
       data: this.newUserData,
     }).then((resp) => {
-      console.log(resp);
       this.authUser = resp;
+
+      this.userData.email = this.newUserData.email;
+      this.userData.password = this.newUserData.password;
     });
   }
 }
