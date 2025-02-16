@@ -1,0 +1,70 @@
+<div class="dialog-content">
+  <div class="pb2 d-flex">
+    <div class="flex-70">
+      <label for="nome">Nome do orçamento</label>
+      <input pInputText id="nome" [(ngModel)]="budgetCopy.nome" />
+    </div>
+
+    <div class="flex-30">
+      <label for="lucro">Lucro</label>
+      <p-inputnumber
+        [(ngModel)]="budgetCopy.lucro"
+        inputId="lucro"
+        suffix="%"
+        locale="pt-BR"
+      />
+    </div>
+  </div>
+
+  <div class="pb2 d-flex space-between">
+    <div style="width: 60%">
+      <label for="nomeDespesa">Nome da despesa</label>
+      <input pInputText id="nomeDespesa" [(ngModel)]="newExpense.descricao" />
+    </div>
+
+    <div style="width: 30%" class="mr2 ml2">
+      <label for="valor">Valor da despesa</label>
+      <p-inputnumber
+        [(ngModel)]="newExpense.valor"
+        inputId="currency-us"
+        mode="currency"
+        currency="BRL"
+        locale="pt-BR"
+        inputId="valor"
+      />
+    </div>
+    <p-button
+      (onClick)="addNewExpense()"
+      [disabled]="!canAddNewExpense"
+      severity="secondary"
+      label="Adicionar"
+    />
+  </div>
+
+  <div *ngIf="budgetCopy.gastos.length > 0" class="pb2">
+    <h3>Despesas cadastradas</h3>
+    <div *ngFor="let expense of budgetCopy.gastos; let expIndex = index">
+      <div class="d-flex space-between">
+        <div>
+          {{ expense.descricao }}, {{ expense.valor | currency : "BRL" }}
+        </div>
+        <p-button
+          icon="pi pi-times"
+          [rounded]="true"
+          severity="danger"
+          [text]="true"
+          (onClick)="removeExpense(expIndex)"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="d-flex space-between">
+    <p-button
+      [loading]="loadingCreate"
+      (onClick)="createNewBudget()"
+      [disabled]="!canUpdateBudget"
+      label="Atualizar orçamento"
+    />
+    {{ budgetCopy.id }}
+  </div>
+</div>
