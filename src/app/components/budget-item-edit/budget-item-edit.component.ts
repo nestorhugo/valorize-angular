@@ -8,6 +8,7 @@ import { CommonModule, CurrencyPipe } from "@angular/common";
 import { BudgetService } from "../../services/budget.service";
 import { apiCall } from "../../utils/apiCall";
 import { getUserData } from "../../utils/userData";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-budget-item-edit",
@@ -101,6 +102,16 @@ export class BudgetItemEditComponent {
     }).finally(() => {
       this.loadingCreate = false;
       this.budgetService.loadBudgets();
+    });
+  }
+
+  router = new Router();
+
+  shareBudget() {
+    this.router.navigate(["/orcamento"], {
+      queryParams: {
+        id: this.budget.id,
+      },
     });
   }
 }

@@ -1,7 +1,6 @@
 <div>
   <p-card class="budget-card" (click)="toggleEditMenu()">
     <div class="budget-row">
-      <p class="p10">{{ budget.status }}</p>
       <p class="nome">{{ budget.nome }}</p>
       <p class="p10">{{ totalBudgetExpenses | currency : "BRL" }}</p>
       <p class="p10">{{ budget.lucro }}%</p>
@@ -19,6 +18,7 @@
         <h3>{{ budget.nome }}</h3>
       </div>
     </ng-template>
+
     <app-budget-item-edit [budget]="budget" />
   </p-dialog>
 </div>

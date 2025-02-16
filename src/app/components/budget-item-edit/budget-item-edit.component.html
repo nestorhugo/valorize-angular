@@ -68,6 +68,11 @@
       label="Excluir orçamento"
     />
     <p-button
+      (onClick)="shareBudget()"
+      [text]="true"
+      label="Compartilhar orçamento"
+    />
+    <p-button
       [loading]="loadingCreate"
       (onClick)="updateBudget()"
       [disabled]="!canUpdateBudget"
