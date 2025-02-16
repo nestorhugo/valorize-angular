@@ -13,10 +13,6 @@ import { CurrencyPipe, JsonPipe } from "@angular/common";
 export class BudgetListItemComponent {
   @Input() budget!: userSingleBudget;
 
-  ngOnInit() {
-    console.log(this.budget.gastos);
-  }
-
   get totalBudgetExpenses() {
     return this.budget.gastos.reduce((acc, gasto) => acc + gasto.valor, 0);
   }

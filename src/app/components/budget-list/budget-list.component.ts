@@ -5,6 +5,7 @@ import { AuthResponse, budgetListResponse } from "../../types/apiTypes";
 import { getUserData } from "../../utils/userData";
 import { BudgetListItemComponent } from "../budget-list-item/budget-list-item.component";
 import { ProgressSpinner } from "primeng/progressspinner";
+import { BudgetService } from "../../services/budget.service";
 
 @Component({
   selector: "app-budget-list",
@@ -18,26 +19,9 @@ export class BudgetListComponent {
   userData: AuthResponse | null = null;
   loadingBudgets: boolean = false;
 
+  constructor(public budgetService: BudgetService) {}
+
   ngOnInit() {
-    this.userData = getUserData();
-    this.loadingBudgets = true;
-    apiCall({
-      path: "/orcamentos/records",
-      method: "GET",
-      query: {
-        filter: `(user='${this.userData?.record.id}')`,
-      },
-      config: {
-        headers: {
-          Authorization: this.userData?.token,
-        },
-      },
-    })
-      .then((resp) => {
-        this.budgets = resp as budgetListResponse;
-      })
-      .finally(() => {
-        this.loadingBudgets = false;
-      });
+    this.budgetService.loadBudgets();
   }
 }

@@ -1,9 +1,84 @@
 <p-button (click)="showDialog()" icon="pi pi-plus-circle" label="Orçamento" />
 <p-dialog
   header="Criar orçamento"
-  [modal]="false"
+  [modal]="true"
   [(visible)]="visible"
-  [style]="{ width: '25rem' }"
+  [style]="{ width: '50vw' }"
 >
-  <div>HAHAHAHA</div>
+  <div class="dialog-content">
+    <div class="pb2 d-flex space-between">
+      <div style="width: 70%" class="mr2">
+        <label for="nome">Nome do orçamento</label>
+        <input pInputText id="nome" [(ngModel)]="newBudget.nome" />
+      </div>
+
+      <div style="width: 30%">
+        <label for="lucro">Porcentagem de lucro</label>
+        <p-inputnumber
+          [(ngModel)]="newBudget.lucro"
+          inputId="lucro"
+          suffix="%"
+          locale="pt-BR"
+        />
+      </div>
+    </div>
+
+    <div class="pb2">
+      <h3>Adicionar despesa</h3>
+
+      <div class="pb2 d-flex space-between">
+        <div style="width: 60%">
+          <label for="nomeDespesa">Nome da despesa</label>
+          <input
+            pInputText
+            id="nomeDespesa"
+            [(ngModel)]="newExpense.descricao"
+          />
+        </div>
+
+        <div style="width: 30%" class="mr2 ml2">
+          <label for="valor">Valor da despesa</label>
+          <p-inputnumber
+            [(ngModel)]="newExpense.valor"
+            inputId="currency-us"
+            mode="currency"
+            currency="BRL"
+            locale="pt-BR"
+            inputId="valor"
+          />
+        </div>
+        <p-button
+          (onClick)="addNewExpense()"
+          [disabled]="!canAddNewExpense"
+          severity="secondary"
+          label="Adicionar"
+        />
+      </div>
+    </div>
+
+    <div *ngIf="newBudget.gastos.length > 0" class="pb2">
+      <h3>Despesas cadastradas</h3>
+      <div *ngFor="let expense of newBudget.gastos; let expIndex = index">
+        <div class="d-flex space-between">
+          <div>
+            {{ expense.descricao }}, {{ expense.valor | currency : "BRL" }}
+          </div>
+          <p-button
+            icon="pi pi-times"
+            [rounded]="true"
+            severity="danger"
+            [text]="true"
+            (onClick)="removeExpense(expIndex)"
+          />
+        </div>
+      </div>
+    </div>
+
+    <p-button
+      [loading]="loadingCreate"
+      (onClick)="createNewBudget()"
+      [disabled]="!canCreateBudget"
+      label="Criar novo orçamento"
+    />
+  </div>
 </p-dialog>
