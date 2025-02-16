@@ -18,6 +18,7 @@ export class BudgetClientViewComponent {
 
   id = "";
   budget: userSingleBudget | null = null;
+  notFound = false;
 
   ngOnInit() {
     this.id = this.route.snapshot.queryParams["id"];
@@ -25,9 +26,13 @@ export class BudgetClientViewComponent {
     apiCall({
       path: `/orcamentos/records/${this.id}`,
       method: "GET",
-    }).then((resp) => {
-      console.log(resp);
-      this.budget = resp as userSingleBudget;
-    });
+    })
+      .then((resp) => {
+        console.log(resp);
+        this.budget = resp as userSingleBudget;
+      })
+      .catch(() => {
+        this.notFound = true;
+      });
   }
 }
