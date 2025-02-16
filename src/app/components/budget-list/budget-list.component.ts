@@ -3,11 +3,12 @@ import { CommonModule } from "@angular/common";
 import { apiCall } from "../../utils/apiCall";
 import { AuthResponse, budgetListResponse } from "../../types/apiTypes";
 import { getUserData } from "../../utils/userData";
+import { BudgetListItemComponent } from "../budget-list-item/budget-list-item.component";
 
 @Component({
   selector: "app-budget-list",
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, BudgetListItemComponent],
   templateUrl: "./budget-list.component.html",
   styleUrl: "./budget-list.component.scss",
 })

@@ -1,11 +1,7 @@
 <p *ngIf="loadingBudgets">Carregando...</p>
 
 <p *ngIf="budgets?.items?.length == 0">Nenhum orçamento cadastrado</p>
-
 <div *ngFor="let budget of budgets?.items">
-  <p>Status: {{ budget.status }}</p>
-  <p>Nome: {{ budget.nome }}</p>
-  <p>Lucro: {{ budget.lucro }}%</p>
-  <p>Valor a cobrar: {{ budget.valor_cobrado }}</p>
-  <p>-----------</p>
+  <app-budget-list-item [budget]="budget" />
+  <p></p>
 </div>
