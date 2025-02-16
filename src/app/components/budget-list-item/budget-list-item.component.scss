@@ -1,0 +1,38 @@
+.budget-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+  overflow-x: scroll;
+
+  .status {
+    width: 10%;
+  }
+  .nome {
+    flex: 1;
+    min-width: 25%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .lucro {
+    width: 20%;
+  }
+  .valor {
+    width: 20%;
+  }
+  .edit {
+    width: 10%;
+  }
+}
+
+:host ::ng-deep {
+  .p-card {
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: var(--p-primary-color);
+    }
+  }
+}
