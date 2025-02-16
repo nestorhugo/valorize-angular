@@ -16,6 +16,7 @@
     </div>
   </div>
 
+  <h3>Adicionar despesa</h3>
   <div class="pb2 d-flex space-between">
     <div style="width: 60%">
       <label for="nomeDespesa">Nome da despesa</label>
@@ -60,11 +61,17 @@
   </div>
   <div class="d-flex space-between">
     <p-button
+      [severity]="'danger'"
       [loading]="loadingCreate"
-      (onClick)="createNewBudget()"
+      (onClick)="deleteBudget()"
+      [disabled]="!canUpdateBudget"
+      label="Excluir orçamento"
+    />
+    <p-button
+      [loading]="loadingCreate"
+      (onClick)="updateBudget()"
       [disabled]="!canUpdateBudget"
       label="Atualizar orçamento"
     />
-    {{ budgetCopy.id }}
   </div>
 </div>

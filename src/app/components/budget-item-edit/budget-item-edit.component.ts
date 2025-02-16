@@ -62,7 +62,7 @@ export class BudgetItemEditComponent {
   loadingCreate = false;
   constructor(private budgetService: BudgetService) {}
 
-  createNewBudget() {
+  updateBudget() {
     this.loadingCreate = true;
     const totalExpenses = this.budgetCopy.gastos.reduce(
       (acc, gasto) => acc + gasto.valor!,
@@ -76,6 +76,22 @@ export class BudgetItemEditComponent {
     apiCall({
       path: `/orcamentos/records/${this.budget.id}`,
       method: "PATCH",
+      data: this.budgetCopy,
+      config: {
+        headers: {
+          Authorization: this.userData?.token,
+        },
+      },
+    }).finally(() => {
+      this.loadingCreate = false;
+      this.budgetService.loadBudgets();
+    });
+  }
+
+  deleteBudget() {
+    apiCall({
+      path: `/orcamentos/records/${this.budget.id}`,
+      method: "DELETE",
       data: this.budgetCopy,
       config: {
         headers: {

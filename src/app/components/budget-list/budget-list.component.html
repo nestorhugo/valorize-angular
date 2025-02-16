@@ -1,5 +1,5 @@
 <p-progress-spinner
-  *ngIf="loadingBudgets"
+  *ngIf="budgetService.loading$ | async"
   strokeWidth="8"
   fill="transparent"
   animationDuration=".5s"
