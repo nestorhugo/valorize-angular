@@ -1,11 +1,17 @@
-<p *ngIf="loadingBudgets">Carregando...</p>
+<p-progress-spinner
+  *ngIf="loadingBudgets"
+  strokeWidth="8"
+  fill="transparent"
+  animationDuration=".5s"
+  [style]="{ width: '50px', height: '50px' }"
+/>
 
-<p *ngIf="budgets?.items?.length == 0">Nenhum orçamento cadastrado</p>
+<p *ngIf="(budgetService.budgets$ | async)?.items?.length === 0">
+  Nenhum orçamento cadastrado
+</p>
 
-<div *ngFor="let budget of budgets?.items">
-  <p>Status: {{ budget.status }}</p>
-  <p>Nome: {{ budget.nome }}</p>
-  <p>Lucro: {{ budget.lucro }}%</p>
-  <p>Valor a cobrar: {{ budget.valor_cobrado }}</p>
-  <p>-----------</p>
+<div *ngFor="let budget of (budgetService.budgets$ | async)?.items">
+  <div style="padding: 0.5rem">
+    <app-budget-list-item [budget]="budget" />
+  </div>
 </div>
