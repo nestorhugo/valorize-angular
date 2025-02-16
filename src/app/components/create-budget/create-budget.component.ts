@@ -20,7 +20,6 @@ import { BudgetService } from "../../services/budget.service";
     InputTextModule,
     InputNumber,
     FormsModule,
-    JsonPipe,
   ],
   templateUrl: "./create-budget.component.html",
   styleUrl: "./create-budget.component.scss",

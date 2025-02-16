@@ -1,8 +1,6 @@
 import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { apiCall } from "../../utils/apiCall";
 import { AuthResponse, budgetListResponse } from "../../types/apiTypes";
-import { getUserData } from "../../utils/userData";
 import { BudgetListItemComponent } from "../budget-list-item/budget-list-item.component";
 import { ProgressSpinner } from "primeng/progressspinner";
 import { BudgetService } from "../../services/budget.service";
@@ -22,6 +20,6 @@ export class BudgetListComponent {
   constructor(public budgetService: BudgetService) {}
 
   ngOnInit() {
-    this.budgetService.loadBudgets();
+    this.budgetService.loadBudgets(true);
   }
 }

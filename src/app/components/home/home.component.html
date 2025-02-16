@@ -1,20 +1,10 @@
 <div class="d-flex space-between">
   <h2>Orçamentos</h2>
-  <div class="d-flex">
-    <i class="pi pi-search search-icon"></i>
-    <input
-      class="search-input"
-      type="text"
-      placeholder="Buscar orçamento"
-      pInputText
-      [(ngModel)]="searchValue"
-    />
-    <app-create-budget />
-  </div>
+
+  <app-create-budget />
 </div>
 
 <div class="budget-row">
-  <h3 class="p10">Status</h3>
   <h3 class="nome">Nome</h3>
   <h3 class="p10">Total despesas</h3>
   <h3 class="p10">Lucro</h3>

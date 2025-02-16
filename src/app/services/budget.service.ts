@@ -11,32 +11,39 @@ export class BudgetService {
   private budgetsSubject = new BehaviorSubject<budgetListResponse | null>(null);
   budgets$ = this.budgetsSubject.asObservable();
 
-  loadingBudgets = false;
-  userData: AuthResponse | null = getUserData();
+  private loadingSubject = new BehaviorSubject<boolean>(false);
+  loading$ = this.loadingSubject.asObservable();
 
-  loadBudgets() {
-    this.loadingBudgets = true;
+  private firstLoad = true;
+
+  loadBudgets(clearData: boolean = false) {
+    this.loadingSubject.next(true);
+
+    // Limpa os dados se for primeiro acesso ou se clearData for true
+    if (this.firstLoad || clearData) {
+      this.budgetsSubject.next(null);
+      this.firstLoad = false;
+    }
+
+    const userData = getUserData();
 
     apiCall({
       path: "/orcamentos/records",
       method: "GET",
       query: {
-        filter: `(user='${this.userData?.record.id}')`,
+        filter: `(user='${userData?.record.id}')`,
       },
       config: {
         headers: {
-          Authorization: this.userData?.token,
+          Authorization: userData?.token,
         },
       },
     })
       .then((resp) => {
         this.budgetsSubject.next(resp as budgetListResponse);
       })
-      .catch((error) => {
-        // tratamento de erro
-      })
       .finally(() => {
-        this.loadingBudgets = false;
+        this.loadingSubject.next(false);
       });
   }
 }
