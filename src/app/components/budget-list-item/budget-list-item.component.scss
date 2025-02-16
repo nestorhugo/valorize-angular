@@ -4,24 +4,18 @@
   gap: 8px;
   text-align: center;
   overflow-x: scroll;
-
-  .status {
-    width: 10%;
-  }
   .nome {
     flex: 1;
     min-width: 25%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-align: start;
   }
-  .lucro {
+  .p20 {
     width: 20%;
   }
-  .valor {
-    width: 20%;
-  }
-  .edit {
+  .p10 {
     width: 10%;
   }
 }

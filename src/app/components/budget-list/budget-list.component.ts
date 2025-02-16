@@ -4,11 +4,12 @@ import { apiCall } from "../../utils/apiCall";
 import { AuthResponse, budgetListResponse } from "../../types/apiTypes";
 import { getUserData } from "../../utils/userData";
 import { BudgetListItemComponent } from "../budget-list-item/budget-list-item.component";
+import { ProgressSpinner } from "primeng/progressspinner";
 
 @Component({
   selector: "app-budget-list",
   standalone: true,
-  imports: [CommonModule, BudgetListItemComponent],
+  imports: [CommonModule, BudgetListItemComponent, ProgressSpinner],
   templateUrl: "./budget-list.component.html",
   styleUrl: "./budget-list.component.scss",
 })

@@ -1,4 +1,10 @@
-<p *ngIf="loadingBudgets">Carregando...</p>
+<p-progress-spinner
+  *ngIf="loadingBudgets"
+  strokeWidth="8"
+  fill="transparent"
+  animationDuration=".5s"
+  [style]="{ width: '50px', height: '50px' }"
+/>
 
 <p *ngIf="budgets?.items?.length == 0">Nenhum orçamento cadastrado</p>
 <div *ngFor="let budget of budgets?.items">

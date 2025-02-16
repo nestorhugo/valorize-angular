@@ -16,3 +16,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: light-dark(var(--p-surface-0), var(--p-surface-950));
 }
+
+.d-flex {
+  display: flex;
+  align-items: center;
+}
+
+.space-between {
+  justify-content: space-between;
+}

@@ -1,7 +1,19 @@
-<h2>Orçamentos</h2>
-<div class="card flex justify-center">
-  <div>
-    <app-budget-list />
+<div class="d-flex space-between">
+  <h2>Orçamentos</h2>
+  <div class="d-flex">
+    <i class="pi pi-search"></i>
+    <input
+      class="search-input"
+      type="text"
+      placeholder="Buscar orçamento"
+      pInputText
+      [(ngModel)]="searchValue"
+    />
+    <h2>++</h2>
   </div>
-  <p-button (onClick)="logOut()" label="logout test" />
 </div>
+
+<div>
+  <app-budget-list />
+</div>
+<p-button (onClick)="logOut()" label="logout test" />

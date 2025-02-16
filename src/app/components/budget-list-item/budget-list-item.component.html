@@ -1,10 +1,9 @@
 <p-card class="budget-card">
   <div class="budget-row">
-    <p class="status">{{ budget.status }}</p>
+    <p class="p10">{{ budget.status }}</p>
     <p class="nome">{{ budget.nome }}</p>
-    <p class="lucro">{{ totalBudgetExpenses | currency : "BRL" }}</p>
-    <p class="lucro">{{ budget.lucro }}%</p>
-    <p class="valor">{{ budget.valor_cobrado | currency : "BRL" }}</p>
-    <i class="pi pi-file-edit valor" style="color: slateblue"></i>
+    <p class="p20">{{ totalBudgetExpenses | currency : "BRL" }}</p>
+    <p class="p20">{{ budget.lucro }}%</p>
+    <p class="p20">{{ budget.valor_cobrado | currency : "BRL" }}</p>
   </div>
 </p-card>

@@ -3,11 +3,13 @@ import { ButtonModule } from "primeng/button";
 import { Router } from "@angular/router";
 import { logout } from "../../utils/userData";
 import { BudgetListComponent } from "../budget-list/budget-list.component";
+import { InputTextModule } from "primeng/inputtext";
+import { FormsModule } from "@angular/forms";
 
 @Component({
   selector: "app-home",
   standalone: true,
-  imports: [ButtonModule, BudgetListComponent],
+  imports: [ButtonModule, BudgetListComponent, FormsModule, InputTextModule],
   templateUrl: "./home.component.html",
   styleUrl: "./home.component.scss",
 })
@@ -19,4 +21,6 @@ export class HomeComponent {
 
     this.router.navigate(["/login"]);
   }
+
+  searchValue = "";
 }
