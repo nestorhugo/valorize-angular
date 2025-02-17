@@ -1,6 +1,10 @@
-<p-card>
-  <h1>{{ budget?.nome }}</h1>
-  <p>Atualizado em: {{ budget?.updated | date : "dd/MM/yyyy HH:mm" }}</p>
+<p-card *ngIf="notFound">
+  <h1>Orçamento não encontrado</h1>
+</p-card>
+
+<p-card *ngIf="budget">
+  <h1>{{ budget.nome }}</h1>
+  <p>Atualizado em: {{ budget.updated | date : "dd/MM/yyyy HH:mm" }}</p>
 
   <div *ngFor="let expense of budget?.gastos">
     <div class="d-flex space-between">
@@ -14,5 +18,5 @@
     </div>
   </div>
   <p-divider type="dotted" />
-  <h2>Total: {{ budget?.valor_cobrado | currency : "BRL" }}</h2>
+  <h2>Total: {{ budget.valor_cobrado | currency : "BRL" }}</h2>
 </p-card>

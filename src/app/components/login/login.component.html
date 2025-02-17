@@ -1,53 +1,62 @@
-<p>Bem-vindo a Valorize!!!!</p>
-<div *ngIf="currentPage == 'login'">
-  <h3>Fazer login</h3>
-  <input
-    type="text"
-    pInputText
-    [(ngModel)]="userData.email"
-    name="login"
-    placeholder="Email"
-  />
-  <p-password placeholder="Senha" [(ngModel)]="userData.password" />
-  <p-button
-    (onClick)="handleLogin()"
-    [disabled]="!validateLoginForm"
-    label="Fazer login"
-  />
-  <div class="card flex justify-center">
-    <p>Ainda não tem uma conta?</p>
-    <h3 (click)="changePage('register')">Cadastre-se</h3>
-  </div>
-</div>
-<div *ngIf="currentPage == 'register'" class="card flex justify-center">
-  <h3>Fazer cadastro</h3>
-  <input
-    type="text"
-    pInputText
-    [(ngModel)]="newUserData.name"
-    name="login"
-    placeholder="Nome"
-  />
-  <input
-    type="text"
-    pInputText
-    [(ngModel)]="newUserData.email"
-    name="login"
-    placeholder="Email"
-  />
+<p-card>
+  <app-valorize-logo />
+  <p>Bem-vindo à Valorize!</p>
 
-  <p-password placeholder="Senha" [(ngModel)]="newUserData.password" />
-  <p-password
-    placeholder="Confirmar senha"
-    [(ngModel)]="newUserData.passwordConfirm"
-  />
-  <p *ngIf="!passwordMatches">As senhas não coincidem!</p>
-  <p *ngIf="!minPasswordLength">A senha precisa ter pelo menos 8 caracteres</p>
-  <p-button
-    (onClick)="handleRegister()"
-    [disabled]="!validateRegisterForm"
-    label="Fazer cadastro"
-  />
-  <p>Já possui uma conta?</p>
-  <h4 (click)="changePage('login')">Fazer login</h4>
-</div>
+  <div *ngIf="currentPage == 'login'" class="login-form">
+    <h3>Fazer login</h3>
+    <input
+      type="text"
+      pInputText
+      [(ngModel)]="userData.email"
+      name="login"
+      placeholder="Email"
+    />
+    <p-password placeholder="Senha" [(ngModel)]="userData.password" />
+    <p-button
+      (onClick)="handleLogin()"
+      [disabled]="!validateLoginForm"
+      label="Fazer login"
+    />
+    <p *ngIf="accountNotFound">A conta fornecina não existe, tente novamente</p>
+    <div>
+      <p>Ainda não tem uma conta?</p>
+      <h3 (click)="changePage('register')" class="cursor">Cadastre-se</h3>
+    </div>
+  </div>
+  <div *ngIf="currentPage == 'register'">
+    <div>
+      <h3>Fazer cadastro</h3>
+      <input
+        type="text"
+        pInputText
+        [(ngModel)]="newUserData.name"
+        name="login"
+        placeholder="Nome"
+      />
+      <input
+        type="text"
+        pInputText
+        [(ngModel)]="newUserData.email"
+        name="login"
+        placeholder="Email"
+      />
+
+      <p-password placeholder="Senha" [(ngModel)]="newUserData.password" />
+      <p-password
+        placeholder="Confirmar senha"
+        [(ngModel)]="newUserData.passwordConfirm"
+      />
+      <p *ngIf="!passwordMatches">As senhas não coincidem!</p>
+      <p *ngIf="!minPasswordLength">
+        A senha precisa ter pelo menos 8 caracteres
+      </p>
+      <p-button
+        (onClick)="handleRegister()"
+        [disabled]="!validateRegisterForm"
+        label="Fazer cadastro"
+      />
+      <p>Já possui uma conta?</p>
+      <h4 class="cursor" (click)="changePage('login')">Fazer login</h4>
+    </div>
+  </div>
+</p-card>

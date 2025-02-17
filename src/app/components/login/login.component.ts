@@ -9,6 +9,8 @@ import { newUserData } from "../../types/globalTypes";
 import { saveUserData } from "../../utils/userData";
 import { Router } from "@angular/router";
 import { AuthResponse } from "../../types/apiTypes";
+import { Card } from "primeng/card";
+import { ValorizeLogoComponent } from "../valorize-logo/valorize-logo.component";
 
 @Component({
   selector: "app-login",
@@ -20,6 +22,8 @@ import { AuthResponse } from "../../types/apiTypes";
     InputTextModule,
     PasswordModule,
     ButtonModule,
+    Card,
+    ValorizeLogoComponent,
   ],
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.scss"],
@@ -32,6 +36,7 @@ export class LoginComponent {
   authUser: any = null;
   currentPage = "login";
   router = new Router();
+  accountNotFound = false;
 
   changePage(page: string) {
     this.currentPage = page;
@@ -45,13 +50,17 @@ export class LoginComponent {
         identity: this.userData.email,
         password: this.userData.password,
       },
-    }).then(async (resp) => {
-      console.log("resp");
-      this.authUser = resp;
+    })
+      .then(async (resp) => {
+        console.log("resp");
+        this.authUser = resp;
 
-      await saveUserData(resp);
-      this.router.navigate(["/"]);
-    });
+        await saveUserData(resp);
+        this.router.navigate(["/"]);
+      })
+      .catch(() => {
+        this.accountNotFound = true;
+      });
   }
 
   get minPasswordLength(): boolean {
