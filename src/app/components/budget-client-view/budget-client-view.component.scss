@@ -1,0 +1,6 @@
+.dotted-line {
+  flex: 1;
+  border-bottom: 2px dotted var(--p-primary-color);
+  margin: 0 0.5rem;
+  height: 1px;
+}

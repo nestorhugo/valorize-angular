@@ -1,0 +1,24 @@
+<div>
+  <p-card class="budget-card" (click)="toggleEditMenu()">
+    <div class="budget-row">
+      <p class="nome">{{ budget.nome }}</p>
+      <p class="p10">{{ totalBudgetExpenses | currency : "BRL" }}</p>
+      <p class="p10">{{ budget.lucro }}%</p>
+      <p class="p10">{{ budget.valor_lucro | currency : "BRL" }}</p>
+      <p class="p20">{{ budget.valor_cobrado | currency : "BRL" }}</p>
+    </div>
+  </p-card>
+  <p-dialog
+    [modal]="true"
+    [(visible)]="editVisible"
+    [style]="{ width: '50vw' }"
+  >
+    <ng-template #header>
+      <div>
+        <h3>{{ budget.nome }}</h3>
+      </div>
+    </ng-template>
+
+    <app-budget-item-edit [budget]="budget" />
+  </p-dialog>
+</div>

@@ -1,0 +1,30 @@
+.search-input {
+  width: 80%;
+  margin-right: 8px;
+}
+
+.search-icon {
+  margin-right: 8px;
+}
+
+.budget-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+  overflow-x: scroll;
+  .nome {
+    flex: 1;
+    min-width: 25%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: start;
+  }
+  .p20 {
+    width: 20%;
+  }
+  .p10 {
+    width: 10%;
+  }
+}
